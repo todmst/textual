@@ -197,6 +197,10 @@ when an expandable node is selected https://github.com/Textualize/textual/pull/4
 - Fixed `Markdown.goto_anchor` no longer scrolling the heading into view https://github.com/Textualize/textual/pull/4583
 - Fixed Footer flicker on initial focus https://github.com/Textualize/textual/issues/4573
 
+### Added
+
+- Added templates support to `Input`
+
 ## [0.63.6] - 2024-05-29
 
 ### Fixed
