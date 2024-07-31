@@ -526,8 +526,8 @@ class Input(Widget, can_focus=True):
         self._suggestion = ""
 
     async def _on_key(self, event: events.Key) -> None:
-        self._cursor_visible = True
         if self.cursor_blink:
+            self._cursor_visible = True
             self._blink_timer.reset()
 
         if event.is_printable:
@@ -558,6 +558,15 @@ class Input(Widget, can_focus=True):
             cell_offset += cell_width
         else:
             self.cursor_position = len(self.value)
+
+    async def _on_mouse_down(self, event: events.MouseDown) -> None:
+        self._cursor_visible = True
+        if self.cursor_blink and self._blink_timer:
+            self._blink_timer.pause()
+
+    async def _on_mouse_up(self, event: events.MouseUp) -> None:
+        if self.cursor_blink and self._blink_timer:
+            self._blink_timer.reset()
 
     async def _on_suggestion_ready(self, event: SuggestionReady) -> None:
         """Handle suggestion messages and set the suggestion when relevant."""
